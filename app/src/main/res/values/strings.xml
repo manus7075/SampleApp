@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">newTestApplication</string>
+    <string name="connection_error">No Internet Connection!</string>
+</resources>
