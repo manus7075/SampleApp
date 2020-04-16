@@ -2,10 +2,13 @@ package com.example.newtestapplication.data.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.newtestapplication.R
 import com.example.newtestapplication.data.observe
 import com.example.newtestapplication.data.presentation.adapter.PagerAdapter
 import com.example.newtestapplication.data.Article
+import com.example.newtestapplication.data.presentation.adapter.NewStaggeredAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class NewsActivity : BaseActivity<NewsViewModel>() {
@@ -22,6 +25,14 @@ class NewsActivity : BaseActivity<NewsViewModel>() {
         }
     }
 
+
+    private fun setStaggerdView(list:List<Article>){
+      val layoutmanager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
+        recycler_view.layoutManager=layoutmanager
+       recycler_view.adapter= NewStaggeredAdapter(list)
+
+
+    }
     private fun setupAdapter(list: List<Article>) {
         newViewPager.adapter = PagerAdapter(list)
         indicator.setViewPager2(newViewPager)
@@ -45,7 +56,8 @@ class NewsActivity : BaseActivity<NewsViewModel>() {
         }
 
         observe(getViewModel().getNewsLiveData()) {
-            setupAdapter(it.orEmpty())
+            setStaggerdView(it.orEmpty())
+           // setupAdapter(it.orEmpty())
         }
     }
 }

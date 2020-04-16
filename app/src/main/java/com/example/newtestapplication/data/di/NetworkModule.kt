@@ -26,6 +26,7 @@ fun createOkHttpClient(): OkHttpClient {
     if (BuildConfig.DEBUG) {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
     } else {
+
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
     }
 
